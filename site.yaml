@@ -1,25 +1,13 @@
 ---
-- name: GitOps Batch Deploy Nginx
+- name: Test WinRM
   hosts: all
-  become: yes
+  gather_facts: yes
+
   tasks:
-    - name: Install Nginx
-      apt:
-        name: nginx
-        state: present
-        update_cache: yes
-      when: ansible_os_family == "Debian"
+    - name: Show hostname
+      ansible.windows.win_shell: hostname
+      register: hostname
 
-    - name: Configure Nginx Port
-      lineinfile:
-        path: /etc/nginx/sites-available/default
-        regexp: 'listen 80 default_server;'
-        line: "    listen {{ nginx_port }} default_server;"
-      when: ansible_os_family == "Debian"
-      notify: Restart Nginx
-
-  handlers:
-    - name: Restart Nginx
-      service:
-        name: nginx
-        state: restarted
+    - name: Print hostname
+      debug:
+        var: hostname.stdout
