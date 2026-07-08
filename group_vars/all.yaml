@@ -1,7 +1,7 @@
 ansible_connection: winrm
-
 ansible_port: 5985
 
+ansible_user: Administrator
+ansible_password: Y1986a
 ansible_winrm_transport: ntlm
-
 ansible_winrm_server_cert_validation: ignore
