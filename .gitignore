@@ -1,5 +1,10 @@
-  hosts: windows_servers
-  gather_facts: no
-  ignore_unreachable: true  
+- hosts: windows_servers
+  gather_facts: false
+  ignore_unreachable: true
+
   tasks:
+    - name: Test WinRM
       win_ping:
+
+    - debug:
+        msg: "{{ inventory_hostname }} OK"
