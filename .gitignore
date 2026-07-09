@@ -1,4 +1,6 @@
-- hosts: windows_servers
+---
+- name: Check WinRM
+  hosts: windows_servers
   gather_facts: false
   ignore_unreachable: true
 
@@ -6,5 +8,6 @@
     - name: Test WinRM
       win_ping:
 
-    - debug:
-        msg: "{{ inventory_hostname }} OK"
+    - name: Add reachable host to online group
+      group_by:
+        key: online
