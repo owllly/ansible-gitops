@@ -1,7 +1,6 @@
 
   hosts: windows_servers
   gather_facts: no
-  ignore_unreachable: true  # <--- 核心：忽略无法连接的主机
+  ignore_unreachable: true  
   tasks:
-
       win_ping:
