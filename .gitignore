@@ -1,7 +1,5 @@
-- name: 批量测试 Windows WinRM
   hosts: windows_servers
   gather_facts: no
-  ignore_unreachable: true  # <--- 核心：忽略无法连接的主机
+  ignore_unreachable: true  
   tasks:
-    - name: 测试 WinRM 是否正常
       win_ping:
